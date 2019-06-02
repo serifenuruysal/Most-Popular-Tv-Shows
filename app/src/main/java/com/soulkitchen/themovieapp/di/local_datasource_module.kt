@@ -1,6 +1,5 @@
 package org.koin.sampleapp.di
 
-import com.soulkitchen.themovieapp.repository.MovieDataSource
 import com.soulkitchen.themovieapp.repository.MovieService
 import com.soulkitchen.themovieapp.repository.local.LocalDataSource
 import org.koin.android.ext.koin.androidApplication

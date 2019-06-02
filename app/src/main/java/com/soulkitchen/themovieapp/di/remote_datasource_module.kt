@@ -19,7 +19,7 @@ val remoteDatasourceModule = applicationContext {
     // Fill property
     bean { createWebService<MovieService>(get(), getProperty(SERVER_URL)) }
 
-//    bean { MovieDataSource(get(),get()) }
+    bean { MovieDataSource(get(),get()) as MovieService}
 }
 
 
