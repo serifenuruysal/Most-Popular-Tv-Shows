@@ -18,25 +18,16 @@ import org.koin.sampleapp.view.result.Constants.IMAGE_URL
 
 class TvShowListAdapter(var list: List<Results>, private val onClick: (Results) -> Unit, var context: Context) :
     PagedListAdapter<Results, ResultHolder>(diffCallback) {
-    override fun onBindViewHolder(holder: ResultHolder, position: Int) {
 
-        (holder as ResultHolder).bindTo(this!!.getItem(position)!!, onClick)
+    override fun onBindViewHolder(holder: ResultHolder, position: Int) {
+        getItem(position)?.let { (holder as ResultHolder).bindTo(it, onClick) }
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultHolder {
         val item = LayoutInflater.from(parent.context)
             .inflate(R.layout.row_movie, parent, false)
-        val title = item.findViewById<TextView>(R.id.tvTitleMovie)
-        val titleeAvarageRate = item.findViewById<TextView>(R.id.tvRateMovie)
-        val imageMovie = item.findViewById<ImageView>(R.id.immage_movie_poster)
-        val model=getItem(1)
-        title.text = model.name
-        titleeAvarageRate.text = model.vote_average.toString()
-        Glide.with(context)
-            .load(Uri.parse(IMAGE_URL + model.poster_path))
-            .into(imageMovie)
-        return ResultHolder.create(parent)
+        return ResultHolder.create(item)
     }
 
 
@@ -62,16 +53,27 @@ object Constants {
 
 class ResultHolder(item: View) : RecyclerView.ViewHolder(item) {
 
-    private val cardView = item.findViewById<CardView>(R.id.card_view)
+    val title = item.findViewById<TextView>(R.id.tvTitleMovie)
+    val titleeAvarageRate = item.findViewById<TextView>(R.id.tvRateMovie)
+    val imageMovie = item.findViewById<ImageView>(R.id.immage_movie_poster)
+    val context = item.context;
+    val cardView = item.findViewById<CardView>(R.id.card_view)
 
     fun bindTo(model: Results, onClick: (Results) -> Unit) {
         cardView.setOnClickListener { onClick(model) }
 
+        title.text = model.name
+        titleeAvarageRate.text = model.vote_average.toString()
+        Glide.with(context)
+            .load(Uri.parse(IMAGE_URL + model.poster_path))
+            .into(imageMovie)
     }
 
     companion object {
 
-        fun create(parent: ViewGroup): ResultHolder {
+        fun create(parent: View): ResultHolder {
+
+
             return ResultHolder(parent)
         }
     }

@@ -12,7 +12,7 @@ import org.koin.dsl.module.applicationContext
 val tvMovieModule = applicationContext {
 
     // ViewModel for Main View
-    viewModel { MovieMainViewModel(get(), get()) }
+    viewModel { MovieMainViewModel(get()) }
 
     // MovieRepositoryRepository
     bean { MovieRepositoryImpl(get()) as MovieRepository }

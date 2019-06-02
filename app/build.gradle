@@ -61,7 +61,14 @@ android {
     dataBinding {
         enabled = true
     }
-  android.defaultConfig.vectorDrawables.useSupportLibrary = true
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+    android.defaultConfig.vectorDrawables.useSupportLibrary = true
 }
 
 dependencies {
@@ -74,12 +81,6 @@ dependencies {
     implementation "org.koin:koin-android-architecture:$koin_version"
     testImplementation "org.koin:koin-test:$koin_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"
-
-    // Anko
-    implementation "org.jetbrains.anko:anko-commons:$anko_version"
-
-    // UI
-    implementation 'com.joanzapata.iconify:android-iconify-weathericons:2.2.2'
 
     //json
     implementation 'com.google.code.gson:gson:2.8.1'
@@ -113,6 +114,10 @@ dependencies {
 
     //Paging
     implementation "android.arch.paging:runtime:1.0.1"
+
+    testImplementation "org.mockito:mockito-core:2.24.0"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC1"
+    testImplementation 'junit:junit:4.12'
 }
 repositories {
     mavenCentral()
