@@ -11,14 +11,21 @@ Shows https://developers.themoviedb.org/3/tv/get-popular-tvshows
 
 •Gson for network opertaions
 
-•Retrofit for network opertaions
+•Retrofit for REST api communication
 
 •RxJava for asynch operations
 
 •Glide for Image loading
 
-•Android Architecture Library for Live data 
+•Android Architecture Components for Live data 
 
-•Support Library for Ui components
+•Android Support Library
 
 •Android Paging Library for paging
+
+•Data binding library for ViewModel
+
+•espresso for UI tests
+
+•mockito for mocking in tests
+
